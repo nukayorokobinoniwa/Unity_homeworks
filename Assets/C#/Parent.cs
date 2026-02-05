@@ -27,6 +27,7 @@ public class Parent : MonoBehaviour
     public bool isMerged = false;
 
 
+
     /// <summary>
     /// 衝突時に他のParentオブジェクトと合体する関数
     /// </summary>
