@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class GameDirector : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class GameDirector : MonoBehaviour
     public static int now_rand = 0;
     public static int next_rand = 0;
 
+    [Header("UI設定")]
+    public GameObject gameOverPanel;     
+    public TextMeshProUGUI finalScoreText;
+
+    public bool isGameOver { get; private set; } = false;
+
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -20,6 +27,10 @@ public class GameDirector : MonoBehaviour
         scoreText.text = "Score: 0";
         nowRandText.text = "出てくるレベル: " + GetLevelName(now_rand);
         nextRandText.text = "次に出るレベル: " + GetLevelName(next_rand);
+
+        if (gameOverPanel != null){
+            gameOverPanel.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -46,8 +57,32 @@ public class GameDirector : MonoBehaviour
     /// <summary>
     /// ゲームオーバー処理を行う関数
     /// </summary>
-    public void GameOver(){
+    public void GameOver()
+    {
+        if (gameOverPanel.activeSelf) return;
+
+        StartCoroutine(GameOverRoutine());
+    }
+    
+    /// <summary>
+    /// ゲームオーバー時のルーチン
+    /// </summary>
+    private IEnumerator GameOverRoutine()
+    {
         Debug.Log("Game Over! Final Score: " + score);
+
+        if (isGameOver) yield break;
+        isGameOver = true;
+        
+        if (gameOverPanel != null){
+            gameOverPanel.SetActive(true);
+        }
+        if (finalScoreText != null){
+            finalScoreText.text = "Final Score: " + score;
+        }
+
+        yield return new WaitForSeconds(10.0f);
+
         Application.Quit();
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
