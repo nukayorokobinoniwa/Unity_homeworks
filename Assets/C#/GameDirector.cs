@@ -1,11 +1,26 @@
 using UnityEngine;
+using TMPro;
 
 public class GameDirector : MonoBehaviour
 {
     public static int score = 0;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI nowRandText;
+    public TextMeshProUGUI nextRandText;
 
     public static int now_rand = 0;
     public static int next_rand = 0;
+
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    void Start(){
+        now_rand = Random.Range(0, 100);
+        next_rand = Random.Range(0, 100);
+        scoreText.text = "Score: 0";
+        nowRandText.text = "出てくるレベル: " + GetLevelName(now_rand);
+        nextRandText.text = "次に出るレベル: " + GetLevelName(next_rand);
+    }
 
     /// <summary>
     /// スコアを加算する関数
@@ -14,6 +29,8 @@ public class GameDirector : MonoBehaviour
     public void AddScore(int points){
         score += points;
         Debug.Log("Current Score: " + score);
+        scoreText.text = "Score: " + score.ToString();
+
     }
 
     /// <summary>
@@ -22,6 +39,8 @@ public class GameDirector : MonoBehaviour
     public void MakeNewRand(){
         now_rand = next_rand;
         next_rand = Random.Range(0, 100);
+        nowRandText.text = "出てくるレベル: " + GetLevelName(now_rand);
+        nextRandText.text = "次に出るレベル: " + GetLevelName(next_rand);
     }
 
     /// <summary>
@@ -40,6 +59,31 @@ public class GameDirector : MonoBehaviour
     /// </summary>
     public int GetNowRand(){
         return now_rand;
+    }
+
+    /// <summary>
+    /// 数字に基づいて "Level0" ～ "Level3" の文字列を返す
+    /// </summary>
+    /// <returns>レベル名の文字列</returns>
+    string GetLevelName(int rand)
+    {
+
+        if (rand < 50) 
+        {
+            return "Level0";
+        }
+        else if (rand < 75) 
+        {
+            return "Level1";
+        }
+        else if (rand < 93) 
+        {
+            return "Level2";
+        }
+        else 
+        {
+            return "Level3";
+        }
     }
 
 
