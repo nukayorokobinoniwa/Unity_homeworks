@@ -18,6 +18,7 @@ public class GameDirector : MonoBehaviour
 
     public bool isGameOver { get; private set; } = false;
 
+    private RankingManager rankingManager;
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -31,6 +32,8 @@ public class GameDirector : MonoBehaviour
         if (gameOverPanel != null){
             gameOverPanel.SetActive(false);
         }
+
+        rankingManager = Object.FindFirstObjectByType<RankingManager>();
     }
 
     /// <summary>
@@ -73,13 +76,17 @@ public class GameDirector : MonoBehaviour
 
         if (isGameOver) yield break;
         isGameOver = true;
-        
+
         if (gameOverPanel != null){
             gameOverPanel.SetActive(true);
         }
         if (finalScoreText != null){
             finalScoreText.text = "Final Score: " + score;
         }
+
+        if (rankingManager != null) {
+        rankingManager.AutoSendScore(score);
+    }
 
         yield return new WaitForSeconds(10.0f);
 
@@ -121,5 +128,11 @@ public class GameDirector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// スコアを取得する関数
+    /// </summary>
+    public int GetScore(){
+        return score;
+    }
 
 }
