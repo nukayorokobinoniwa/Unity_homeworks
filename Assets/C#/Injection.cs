@@ -23,6 +23,9 @@ public class Injection : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (gameDirector != null && gameDirector.isGameOver){
+            return; 
+        }
         HandleMovement();
 
         if (Input.GetKeyDown(KeyCode.Space))

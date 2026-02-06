@@ -51,6 +51,7 @@ MonoBehaviour:
   nextLevelGroupPrefab: {fileID: 6050345998238785915, guid: 34abb11c220ed6a4a9872a3661e77165, type: 3}
   isMerged: 0
   mergeEffectPrefab: {fileID: 4636534960247698938, guid: 9b3ef924a0206734db0dcb6df4acd3b6, type: 3}
+  mergeSound: {fileID: 8300000, guid: 043d7a7a60de5fc4baa8641c03f96eba, type: 3}
 --- !u!1001 &6170354498154053609
 PrefabInstance:
   m_ObjectHideFlags: 0

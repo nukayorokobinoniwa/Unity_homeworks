@@ -29,6 +29,9 @@ public class Parent : MonoBehaviour
     [Header("合体時のエフェクト")]
     public GameObject mergeEffectPrefab;
 
+    [Header("サウンド設定")]
+    public AudioClip mergeSound;
+
 
     /// <summary>
     /// 衝突時に他のParentオブジェクトと合体する関数
@@ -45,6 +48,9 @@ public class Parent : MonoBehaviour
         isMerged = true;
         otherParentScript.isMerged = true;
 
+        if (mergeSound != null){
+            AudioSource.PlayClipAtPoint(mergeSound, spawnPos);
+        }
         if (mergeEffectPrefab != null){
             Quaternion spawnRotation = Quaternion.Euler(-1 *90f, 0f, 0f);
             Instantiate(mergeEffectPrefab, spawnPos, spawnRotation);
