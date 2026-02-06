@@ -18,8 +18,8 @@ public class GameDirector : MonoBehaviour
         now_rand = Random.Range(0, 100);
         next_rand = Random.Range(0, 100);
         scoreText.text = "Score: 0";
-        nowRandText.text = "Now Rand: " + GetLevelName(now_rand);
-        nextRandText.text = "Next Rand: " + GetLevelName(next_rand);
+        nowRandText.text = "出てくるレベル: " + GetLevelName(now_rand);
+        nextRandText.text = "次に出るレベル: " + GetLevelName(next_rand);
     }
 
     /// <summary>
@@ -39,8 +39,8 @@ public class GameDirector : MonoBehaviour
     public void MakeNewRand(){
         now_rand = next_rand;
         next_rand = Random.Range(0, 100);
-        nowRandText.text = "Now Rand: " + GetLevelName(now_rand);
-        nextRandText.text = "Next Rand: " + GetLevelName(next_rand);
+        nowRandText.text = "出てくるレベル: " + GetLevelName(now_rand);
+        nextRandText.text = "次に出るレベル: " + GetLevelName(next_rand);
     }
 
     /// <summary>
