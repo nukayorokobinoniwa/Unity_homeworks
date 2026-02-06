@@ -49,6 +49,7 @@ MonoBehaviour:
   currentLevel: 2
   nextLevelGroupPrefab: {fileID: 1775919909530264239, guid: 416203a954f92d4428f9f6729a789d4c, type: 3}
   isMerged: 0
+  mergeEffectPrefab: {fileID: 4636534960247698938, guid: 9b3ef924a0206734db0dcb6df4acd3b6, type: 3}
 --- !u!1001 &7688234408676638099
 PrefabInstance:
   m_ObjectHideFlags: 0
