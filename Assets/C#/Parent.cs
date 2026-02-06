@@ -26,6 +26,8 @@ public class Parent : MonoBehaviour
     [HideInInspector]
     public bool isMerged = false;
 
+    [Header("合体時のエフェクト")]
+    public GameObject mergeEffectPrefab;
 
 
     /// <summary>
@@ -43,8 +45,11 @@ public class Parent : MonoBehaviour
         isMerged = true;
         otherParentScript.isMerged = true;
 
-        if (nextLevelGroupPrefab != null)
-        {
+        if (mergeEffectPrefab != null){
+            Quaternion spawnRotation = Quaternion.Euler(-1 *90f, 0f, 0f);
+            Instantiate(mergeEffectPrefab, spawnPos, spawnRotation);
+        }
+        if (nextLevelGroupPrefab != null){
             Instantiate(nextLevelGroupPrefab, spawnPos, Quaternion.identity);
         }
 
