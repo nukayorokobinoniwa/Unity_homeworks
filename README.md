@@ -43,6 +43,6 @@
 
 - Unity 6000.0.33f1
 
-Language: C#
+- Language: C#
 
-Backend: Google Apps Script / Google Sheets
+- Backend: Google Apps Script / Google Sheets
